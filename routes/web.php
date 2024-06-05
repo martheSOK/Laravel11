@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-   // return view('welcome');
+   return view('welcome');
    //return "Hello world";
 
 });
@@ -47,5 +47,5 @@ Route::get('/etudiant', function (Request $request) {
 
 //route paramétrique optionnel
 Route::get('/etudiant/{id}/{name?}', function (int $id ,?string $name=null) {
-   return "Etudiant N° $id se nomme $name";
+   //return "Etudiant N° $id se nomme $name";
 })->where('id','[0-9]+')->where('name','[a-zA-Z]+');
