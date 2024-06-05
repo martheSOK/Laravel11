@@ -9,11 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+     //ce qu'il faut faire lorsque je lance la migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('contact')->unique();
+            $table->enum('status',["user","admin"]);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
