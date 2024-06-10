@@ -1,0 +1,27 @@
+
+DB::table('users')->insert([
+    'nom' =>'TRAORE',
+    'prenom' =>'jhon',
+    'contact' =>'91215465',
+    'status' =>'admin',
+    'email' => 'jhon@example.com',
+    'password' =>'jhon94##'
+]);
+
+
+
+//recuperer une instance
+$users = DB::table('users')->select('nom', 'prenom', 'contact','status','email','password')->get();
+
+//recuperer toute les instances
+$users = DB::table('users')->get();
+
+//renvoie la première instance trouvé
+DB::table('users')->first();
+
+//ce ci n'est pas possible car cette requête nous retourn un tableau simple qui ne possède pas cette methode
+DB::select("select * from users")->first();// ce ci renvoie une erreur
+
+
+//retourner une collection avec des attributs spécifique
+DB::table('users')->pluck('nom');

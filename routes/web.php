@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -49,3 +50,17 @@ Route::get('/etudiant', function (Request $request) {
 Route::get('/etudiant/{id}/{name?}', function (int $id ,?string $name=null) {
    //return "Etudiant N° $id se nomme $name";
 })->where('id','[0-9]+')->where('name','[a-zA-Z]+');
+
+
+
+Route::get('/users', function () {
+   //ici c'est sur la collection que j'applique mon filtre
+   $users= DB::table("users")->get()->first();
+   dump($users);
+   //c'est en base de donné directement le filtre s'applique
+   $users= DB::table("users")->first();
+   dump($users);
+   return "Liste des users";
+ 
+});
+
