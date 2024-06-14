@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,9 +18,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
+        'contact',
+        'status',
         'email',
         'password',
+    ];
+
+    //pour les champ que nous n'aimerions pas voire (remplir) lors de la création de l'instance de ce model
+    protected $guarded =[
+        'id'
     ];
 
     /**
@@ -43,5 +52,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function entreprises(): HasMany
+    {
+        return $this->hasMany(Entreprise::class);
+    }
+
+    public function commandes(): HasMany
+    {
+        return $this->hasMany(Commande::class);
     }
 }
