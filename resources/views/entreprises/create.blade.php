@@ -70,7 +70,7 @@
             @enderror
 
             <div>
-                <label for="user_id">Prorietaire:</label>
+                <label for="user_id">Propriétaire:</label>
                 <select name="user_id" id="">
                     <option value="">selectionner</option>
                     @foreach ($users as $un_user )
@@ -80,7 +80,7 @@
                 </select>
             </div><br>
 
-            <button type="submit" class="btn-success">Enregistrer</button>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
         </form>
     </div>
     </main>

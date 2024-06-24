@@ -20,6 +20,7 @@ class Evenement extends Model
         'adresse',
         'gps',
         'description',
+        'date_event',
         'heur_debut',
         'heur_fin'
     ];

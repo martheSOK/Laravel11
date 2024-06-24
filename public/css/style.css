@@ -16,7 +16,7 @@ body {
 .Btn_add {
     width: fit-content;
     margin-bottom:20px;
-    background-color: #2bc48a;
+    background-color: #2b42c4;
     padding: 5px 20px;
     color: #fff;
     display: flex;
@@ -49,7 +49,7 @@ td {
 }
 img {
     height: 25px;
-   
+
 }
 tr:nth-child(2n){
     background-color: #f6f8f8;

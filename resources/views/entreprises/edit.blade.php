@@ -70,6 +70,18 @@
             @enderror
 
 
+            <div>
+                <label for="user_id">Propriétaire:</label>
+                <select name="user_id" id="">
+                    <option value="">selectionner</option>
+                    @foreach ($users as $un_user )
+                        <option value="{{ $un_user->id }}">{{ $un_user->nom }}</option>
+                    @endforeach
+
+                </select>
+            </div><br>
+
+
             <button type="submit" class="btn-success">Enregistrer</button>
         </form>
     </div>
