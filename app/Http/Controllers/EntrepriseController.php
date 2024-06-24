@@ -40,20 +40,32 @@ class EntrepriseController extends Controller
     public function store(Request $request)
     {
         //
-        $validator = Validator::make($request->all(), [
-            'nom' => 'required|alpha|min:3|max:255',
+        // $validator = Validator::make($request->all(), [
+        //     'nom' => 'required|alpha|min:3|max:255|regex:[a-zA-Z]+',
+        //     'pays' => 'required|string|min:3|max:255',
+        //     'ville' => 'required|string|min:3|max:255',
+        //     'quartier' => 'required|string|min:3|max:255',
+        //     'adresse'=> 'required|string|max:255',
+
+        // ])->validate();
+
+
+        $validator=$request->validate([
+            'nom' => 'required|alpha|min:3|max:255|regex:[a-zA-Z]+',
             'pays' => 'required|string|min:3|max:255',
             'ville' => 'required|string|min:3|max:255',
             'quartier' => 'required|string|min:3|max:255',
             'adresse'=> 'required|string|max:255',
-
         ]);
+
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        //Creation d'une instance de resta
+
+
+        //Creation d'une instance de entreprise
         $entreprise=Entreprise::create([
             'user_id'=>$request->user_id,
             'nom'=>$request->nom,
@@ -63,7 +75,7 @@ class EntrepriseController extends Controller
             'adresse'=>$request->adresse,
 
         ]);
-        dump($entreprise);
+        //dump($entreprise);
         //echo 'enrégistrement réussi';
         return redirect()->route('entreprises.index');
 
@@ -89,7 +101,8 @@ class EntrepriseController extends Controller
     public function edit(Entreprise $entreprise)
     {
         //
-        return view("entreprises.edit" ,compact('entreprise'));
+        $users=User::all();
+        return view("entreprises.edit" ,compact('entreprise','users'));
     }
 
     /**
@@ -98,6 +111,30 @@ class EntrepriseController extends Controller
     public function update(Request $request, Entreprise $entreprise)
     {
         //
+
+
+         $validator = Validator::make($request->all(), [
+            'nom' => 'required|alpha|min:3|max:255',
+            'pays' => 'required|string|min:3|max:255',
+            'ville' => 'required|string|min:3|max:255',
+            'quartier' => 'required|string|min:3|max:255',
+            'adresse'=> 'required|string|max:255',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $entreprise->nom=$request->nom;
+        $entreprise->pays=$request->pays;
+        $entreprise->ville=$request->ville;
+        $entreprise->quartier=$request->quartier;
+        $entreprise->adresse=$request->adresse;
+
+
+        $entreprise->save();
+
+        return redirect()->route('entreprises.index');
     }
 
     /**

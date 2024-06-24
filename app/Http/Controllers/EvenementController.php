@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entreprise;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
+use Validator;
 
 class EvenementController extends Controller
 {
@@ -13,6 +15,13 @@ class EvenementController extends Controller
     public function index()
     {
         //
+
+        $data=[
+            "titre" =>"Liste de tous les evenements",
+            "liste_evenement" => Evenement::all(),
+        ];
+
+        return view("evenements.index")->with($data);
     }
 
     /**
@@ -21,6 +30,8 @@ class EvenementController extends Controller
     public function create()
     {
         //
+        $entreprises=Entreprise::all();
+        return view('evenements.create',compact("entreprises"));
     }
 
     /**
@@ -29,6 +40,23 @@ class EvenementController extends Controller
     public function store(Request $request)
     {
         //
+        $validator= Validator::make($request->all(),[
+        'entreprise_id'=>'required',
+        'nom' => 'required|alpha|min:3|max:255',
+        'pays'=>'required|string|min:3|max:255',
+        'ville'=>'required|string|min:3|max:255',
+        'adresse'=>'required|string|min:3|max:255',
+        'gps'=> 'required',
+        'description'=>'required',
+        'heur_debut'=>'required',
+        'heur_fin' =>'required',
+
+        ])->validate();
+
+        //dd($validator);
+
+        Evenement::create($request->all());
+        return redirect()->route('evenements.index');
     }
 
     /**
@@ -37,6 +65,10 @@ class EvenementController extends Controller
     public function show(Evenement $evenement)
     {
         //
+        $entreprises=Entreprise::all();
+        return view('evenements.show', compact('evenement','entreprises'));
+
+
     }
 
     /**
@@ -45,6 +77,8 @@ class EvenementController extends Controller
     public function edit(Evenement $evenement)
     {
         //
+        $entreprises=Entreprise::all();
+        return view('evenements.edit',compact("entreprises","evenement"));
     }
 
     /**
@@ -53,7 +87,35 @@ class EvenementController extends Controller
     public function update(Request $request, Evenement $evenement)
     {
         //
-    }
+
+        $validator= Validator::make($request->all(),[
+            'entreprise_id'=>'required',
+            'nom' => 'required|alpha|min:3|max:255',
+            'pays'=>'required|string|min:3|max:255',
+            'ville'=>'required|string|min:3|max:255',
+            'adresse'=>'required|string|min:3|max:255',
+            'gps'=> 'required',
+            'description'=>'required',
+            'heur_debut'=>'required',
+            'heur_fin' =>'required',
+
+            ])->validate();
+
+            $evenement->nom=$request->nom;
+            $evenement->pays=$request->pays;
+            $evenement->ville=$request->ville;
+            $evenement->adresse=$request->adresse;
+            $evenement->gps=$request->gps;
+            $evenement->description=$request->description;
+            $evenement->heur_debut=$request->heur_debut;
+            $evenement->heur_fin=$request->heur_fin;
+            $evenement->entreprise_id=$request->entreprise_id;
+
+            $evenement->save();
+
+            return redirect()->route('evenements.index');
+        }
+
 
     /**
      * Remove the specified resource from storage.
@@ -61,5 +123,8 @@ class EvenementController extends Controller
     public function destroy(Evenement $evenement)
     {
         //
+        $evenement->delete();
+        return redirect()->route('evenements.index');
+
     }
 }
