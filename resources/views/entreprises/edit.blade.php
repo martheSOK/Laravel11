@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="/css/create.css">
 </head>
 <body>
+    <style>
+        .faild_input{
+            border: solid 1px red;
+        }
+    </style>
     <header>
+
         <nav>
             <div class="container1">
                 <div class="logo">Logo</div>
@@ -30,43 +36,43 @@
             @method('PUT')
             <div class="form-group">
                 <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom" value="@php if (!empty($entreprise)){echo $entreprise->nom;} @endphp"  required>
+                <input type="text" id="nom" name="nom" value="{{ old('nom', $entreprise->pays ?? '') }}" class="@error('nom') faild_input @enderror">
             </div>
 
             @error('nom')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div class="form-group">
                 <label for="pays">Pays:</label>
-                <input type="text" id="pays" name="pays" value="@php if (!empty($entreprise)){echo $entreprise->pays;} @endphp" required>
+                <input type="text" id="pays" name="pays" value="{{ old('pays', $entreprise->pays ?? '') }}" class="@error('pays') faild_input @enderror">
             </div>
 
             @error('pays')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div class="form-group">
                 <label for="ville">Ville:</label>
-                <input type="text" id="ville" name="ville" value="@php if (!empty($entreprise)){echo $entreprise->ville;} @endphp" required>
+                <input type="text" id="ville" name="ville" value="{{ old('ville', $entreprise->ville ?? '') }}" class="@error('ville') faild_input @enderror">
             </div>
             @error('ville')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
             <div class="form-group">
                 <label for="quartier">Quartier:</label>
-                <input type="text" id="quartier" name="quartier" value="@php if (!empty($entreprise)){echo $entreprise->quartier;} @endphp" required>
+                <input type="text" id="quartier" name="quartier" value="{{ old('quartier', $entreprise->quartier ?? '') }}" class="@error('quartier') faild_input @enderror">
             </div>
             @error('quartier')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div class="form-group">
                 <label for="adresse">Adresse:</label>
-                <input type="text" id="adresse" name="adresse"  value="@php if (!empty($entreprise)){echo $entreprise->adresse;} @endphp" required>
+                <input type="text" id="adresse" name="adresse"  value="{{ old('adresse', $entreprise->adresse ?? '') }}" class="@error('adresse') faild_input @enderror">
             </div>
             @error('adresse')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
 
@@ -75,7 +81,12 @@
                 <select name="user_id" id="">
                     <option value="">selectionner</option>
                     @foreach ($users as $un_user )
-                        <option value="{{ $un_user->id }}">{{ $un_user->nom }}</option>
+                        <option value="{{ $un_user->id }}"
+                            @if($entreprise->user_id==$un_user->id)
+                                selected
+                            @endif>
+                            {{ $un_user->nom }}
+                        </option>
                     @endforeach
 
                 </select>
