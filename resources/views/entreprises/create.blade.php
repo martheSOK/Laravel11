@@ -8,14 +8,19 @@
     <link rel="stylesheet" href="/css/create.css">
 </head>
 <body>
+    <style>
+        .faild_input{
+            border: solid 1px red;
+        }
+    </style>
     <header>
         <nav>
             <div class="container1">
                 <div class="logo">Logo</div>
                 <ul class="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">User profile</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">User profile</a></li>
                 </ul>
             </div>
         </nav>
@@ -29,44 +34,44 @@
             @csrf
             <div class="form-group">
                 <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom" required>
+                <input type="text" id="nom" name="nom" value="{{ old('nom') }}"  class="@error('nom') faild_input @enderror">
             </div>
 
             @error('nom')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div class="form-group">
                 <label for="pays">Pays:</label>
-                <input type="text" id="pays" name="pays" required>
+                <input type="text" id="pays" name="pays" name="pays"  value="{{ old('pays') }}"  class="@error('pays') faild_input @enderror">
             </div>
             @error('pays')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div class="form-group">
                 <label for="ville">Ville:</label>
-                <input type="text" id="ville" name="ville" required>
+                <input type="text" id="ville" name="ville" value="{{ old('ville') }}"  class="@error('ville') faild_input @enderror">
             </div>
 
             @error('ville')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div class="form-group">
                 <label for="quartier">Quartier:</label>
-                <input type="text" id="quartier" name="quartier" required>
+                <input type="text" id="quartier" name="quartier" value="{{ old('quartier') }}"  class="@error('quartier') faild_input @enderror">
             </div>
             @error('quartier')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div class="form-group">
                 <label for="adresse">Adresse:</label>
-                <input type="text" id="adresse" name="adresse" required>
+                <input type="text" id="adresse" name="adresse" value="{{ old('adresse') }}"  class="@error('adresse') faild_input @enderror">
             </div>
             @error('adresse')
-                <div class="error">{{ $message }}</div>
+                <span style="color:red;">Champ requis</span>
             @enderror
 
             <div>

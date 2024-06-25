@@ -113,26 +113,28 @@ class EntrepriseController extends Controller
         //
 
 
-         $validator = Validator::make($request->all(), [
+        $validator=$request->validate([
             'nom' => 'required|alpha|min:3|max:255',
             'pays' => 'required|string|min:3|max:255',
             'ville' => 'required|string|min:3|max:255',
             'quartier' => 'required|string|min:3|max:255',
             'adresse'=> 'required|string|max:255',
-
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-        $entreprise->nom=$request->nom;
-        $entreprise->pays=$request->pays;
-        $entreprise->ville=$request->ville;
-        $entreprise->quartier=$request->quartier;
-        $entreprise->adresse=$request->adresse;
+
+        // if ($validator) {
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
+
+        $entreprise->update($validator);
+        // $entreprise->nom=$request->nom;
+        // $entreprise->pays=$request->pays;
+        // $entreprise->ville=$request->ville;
+        // $entreprise->quartier=$request->quartier;
+        // $entreprise->adresse=$request->adresse;
 
 
-        $entreprise->save();
+        // $entreprise->save();
 
         return redirect()->route('entreprises.index');
     }
