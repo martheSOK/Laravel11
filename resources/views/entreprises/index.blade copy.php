@@ -7,14 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entreprise</title>
     <link rel="stylesheet" href="css/style.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
     <div class="container">
         <h1 class="bg-red" style="display: flex; justify-content: center;  align-items: center">{{ $titre }}</h1>
         <div>
-            <a href="{{ route("entreprises.create") }}" class="Btn_add"> <img src="images/plus.png"> Ajouter</a>
+            <a href="{{ route('entreprises.create') }}" class="Btn_add"> <img src="images/plus.png"> Ajouter</a>
             <p>tout va toujours bien</p>
             <table >
                 <thead>

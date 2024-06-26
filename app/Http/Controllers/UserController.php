@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -13,6 +16,13 @@ class UserController extends Controller
     public function index()
     {
         //
+        {
+            $data=[
+                "titre" =>"Liste de toutes les utilisateurs",
+                "liste_users" => User::all(),
+            ];
+            return view('auth.index')->with($data);
+        }
     }
 
     /**
@@ -21,6 +31,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('auth.register');
     }
 
     /**
@@ -28,15 +39,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'nom'=> ['required', 'string', 'max:255'],
+            'prenom'=> ['required', 'string', 'max:255'],
+            'contact'=> ['required', 'string', 'max:255'],
+            'status'=> ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
 
+        $user = User::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'contact'=>$request->contact,
+            'status'=>$request->status,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('users.index');
+    }
     /**
      * Display the specified resource.
      */
     public function show(User $user)
     {
         //
+        return view('auth.show',compact("user"));
     }
 
     /**
@@ -45,6 +75,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        return view('auth.edit',compact("user"));
     }
 
     /**
@@ -53,13 +84,25 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $validator=$request->validate([
+            'nom'=> ['required', 'string', 'max:255'],
+            'prenom'=> ['required', 'string', 'max:255'],
+            'contact'=> ['required', 'string', 'max:255'],
+            'status'=> ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user->update($validator);
+        return redirect()->route('users.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(User $user)
+
     {
         //
+        $user->delete();
+        return redirect(route('users.index'));
     }
 }

@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entreprise</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
+@extends('layouts.base')
+@section("content")
+<div class="container">
     <div class="container">
-        <h1 style="display: flex; justify-content: center;  align-items: center">{{ $titre }}</h1>
+        <h1 style="display: flex; justify-content: center;  align-items: center; margin-top:60px; font-weight: bold; font-size: 2rem;">{{ $titre }}</h1>
         <div>
             <a href="{{ route("evenements.create") }}" class="Btn_add"> <img src="images/plus.png"> Ajouter</a>
             <table >
@@ -21,10 +12,11 @@
                             <th>Pays</th>
                             <th>Ville</th>
                             <th>Adresse</th>
-                            <th>gps</th>
-                            <th>description</th>
-                            <th>heur_debut</th>
-                            <th>heur_fin</th>
+                            <th>Gps</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Heur_debut</th>
+                            <th>Heur_fin</th>
                             <th>Entrepise</th>
                             <th>Modifier</th>
                             <th>Show</th>
@@ -40,6 +32,7 @@
                                 <td>{{ $un_evenement->adresse}}</td>
                                 <td>{{ $un_evenement->gps}}</td>
                                 <td>{{ $un_evenement->description}}</td>
+                                <td>{{ $un_evenement->date_event}}</td>
                                 <td>{{ $un_evenement->entreprise->nom}}</td>
                                 <td>{{ $un_evenement->heur_debut}}</td>
                                 <td>{{ $un_evenement->heur_fin}}</td>
@@ -57,7 +50,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <p>Aucune entreprise disponible</p>
+                            <p style=" margin-top:100px;">Aucun evenement disponible</p>
                         @endforelse
 
                 </tbody>
@@ -67,6 +60,5 @@
         </div>
     </div>
 
-</body>
+@endsection
 
-</html>
