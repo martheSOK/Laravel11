@@ -79,7 +79,7 @@
                 <select name="user_id" id="">
                     <option value="">selectionner</option>
                     @foreach ($users as $un_user )
-                        <option value="{{ $un_user->id }}">{{ $un_user->nom }}</option>
+                        <option value="{{ $un_user->id }}">{{ $un_user->name }}</option>
                     @endforeach
 
                 </select>

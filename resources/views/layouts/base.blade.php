@@ -15,20 +15,25 @@
 <!-- Core Css -->
 <link rel="stylesheet" href="./assets/css/theme.css" />
 	<title>Modernize TailwindCSS HTML Admin Template</title>
+    @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/js/app.js'])
 </head>
 
 <body class=" bg-white">
 	<main>
 		<!--start the project-->
 		<div id="main-wrapper" class=" flex">
-            <!--sidbar ici-->
-            @include('layouts/components.sidbar')
+            <!--sidbar ici si le user s'est connecter on l'affiche le dashbord -->
+            @if (Auth::user() !=null)
+                @include('layouts/components.sidbar')
+            @endif
+
 			<div class=" w-full page-wrapper overflow-hidden">
 
 				<!--header ici-->
                 @include('layouts/components.header')
 				<!-- Main Content -->
 				<main class="h-full overflow-y-auto  max-w-full  pt-4">
+                    {{-- afficher  le user conecter --}}
 
                     @yield("content")
 

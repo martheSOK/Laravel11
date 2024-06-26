@@ -66,7 +66,19 @@
                 </li>
                 </ul>
             <div class="flex items-center gap-4">
-              <a href="#" class="btn font-medium hover:bg-blue-700 py-2" aria-current="page">Download Free</a>
+                {{-- si le user est n'est pas connecter alors affiche lui les deux boutton si non affiche lui le bouton de deconnection --}}
+                @if (Auth::user() ==null)
+                    <button><a href="{{ route('login') }}" class="btn font-medium hover:bg-blue-700 py-2" aria-current="page">Se connecter</a></button>
+                    <button><a href="{{ route('register') }}" class="btn font-medium hover:bg-blue-700 py-2" aria-current="page">S'inscrire</a></button>
+                @else
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button class="btn font-medium hover:bg-blue-700 py-2" aria-current="page">Se Deconnecter</button>
+                    </form>
+                @endif
+
+
+
                 <div class="hs-dropdown relative inline-flex [--placement:bottom-right] sm:[--trigger:hover]">
         <a class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full">
             <img class="object-cover w-9 h-9 rounded-full" src="./assets/images/profile/user-1.jpg" alt=""

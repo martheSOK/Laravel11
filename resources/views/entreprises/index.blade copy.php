@@ -38,7 +38,7 @@
                                 <td>{{ $une_entreprise->ville}}</td>
                                 <td>{{ $une_entreprise->quartier}}</td>
                                 <td>{{ $une_entreprise->adresse}}</td>
-                                <td>{{ $une_entreprise->user->nom}}</td>
+                                <td>{{ $une_entreprise->user->name}}</td>
 
                                 <td><button><a href="{{ route('entreprises.edit' , $une_entreprise) }}"><img src="images/pen.png"></a></button></td>
                                 <td>
