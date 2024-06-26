@@ -51,32 +51,31 @@ class EntrepriseController extends Controller
 
 
         $validator=$request->validate([
-            'nom' => 'required|alpha|min:3|max:255|regex:[a-zA-Z]+',
+            'nom' => 'required|alpha|min:3|max:255',
             'pays' => 'required|string|min:3|max:255',
             'ville' => 'required|string|min:3|max:255',
             'quartier' => 'required|string|min:3|max:255',
             'adresse'=> 'required|string|max:255',
+            'user_id'=>'required'
         ]);
 
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-
+        //dd($validator);
+        // if ($validator) {
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
 
         //Creation d'une instance de entreprise
-        $entreprise=Entreprise::create([
-            'user_id'=>$request->user_id,
-            'nom'=>$request->nom,
-            'pays'=>$request->pays,
-            'ville'=>$request->ville,
-            'quartier'=>$request->quartier,
-            'adresse'=>$request->adresse,
+        $entreprise=Entreprise::create($validator);
+        //Autre façon de créer une instance
+        // $entreprise=Entreprise::create([
+        //     'user_id'=>$request->user_id,
+        //     'nom'=>$request->nom,
+        //     'pays'=>$request->pays,
+        //     'ville'=>$request->ville,
+        //     'quartier'=>$request->quartier,
+        //     'adresse'=>$request->adresse,
 
-        ]);
-        //dump($entreprise);
-        //echo 'enrégistrement réussi';
+        // ]);
         return redirect()->route('entreprises.index');
 
 

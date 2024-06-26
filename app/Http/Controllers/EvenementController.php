@@ -40,22 +40,23 @@ class EvenementController extends Controller
     public function store(Request $request)
     {
         //
-        $validator= Validator::make($request->all(),[
+        $validator=$request->validate([
         'entreprise_id'=>'required',
         'nom' => 'required|alpha|min:3|max:255',
         'pays'=>'required|string|min:3|max:255',
         'ville'=>'required|string|min:3|max:255',
         'adresse'=>'required|string|min:3|max:255',
         'gps'=> 'required',
-        'description'=>'required',
+        'description'=>'required|string',
+        'date_event'=>'required|date',
         'heur_debut'=>'required',
         'heur_fin' =>'required',
 
-        ])->validate();
+        ]);
 
         //dd($validator);
 
-        Evenement::create($request->all());
+        Evenement::create($validator);
         return redirect()->route('evenements.index');
     }
 
@@ -87,8 +88,7 @@ class EvenementController extends Controller
     public function update(Request $request, Evenement $evenement)
     {
         //
-
-        $validator= Validator::make($request->all(),[
+        $validator= $request->validate([
             'entreprise_id'=>'required',
             'nom' => 'required|alpha|min:3|max:255',
             'pays'=>'required|string|min:3|max:255',
@@ -96,22 +96,25 @@ class EvenementController extends Controller
             'adresse'=>'required|string|min:3|max:255',
             'gps'=> 'required',
             'description'=>'required',
+            'date_event'=>'required|date',
             'heur_debut'=>'required',
             'heur_fin' =>'required',
 
-            ])->validate();
+            ]);
 
-            $evenement->nom=$request->nom;
-            $evenement->pays=$request->pays;
-            $evenement->ville=$request->ville;
-            $evenement->adresse=$request->adresse;
-            $evenement->gps=$request->gps;
-            $evenement->description=$request->description;
-            $evenement->heur_debut=$request->heur_debut;
-            $evenement->heur_fin=$request->heur_fin;
-            $evenement->entreprise_id=$request->entreprise_id;
+            // $evenement->nom=$request->nom;
+            // $evenement->pays=$request->pays;
+            // $evenement->ville=$request->ville;
+            // $evenement->adresse=$request->adresse;
+            // $evenement->gps=$request->gps;
+            // $evenement->description=$request->description;
+            // $evenement->heur_debut=$request->heur_debut;
+            // $evenement->heur_fin=$request->heur_fin;
+            // $evenement->entreprise_id=$request->entreprise_id;
 
-            $evenement->save();
+            //$evenement->save();
+
+            $evenement->update($validator);
 
             return redirect()->route('evenements.index');
         }

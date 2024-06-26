@@ -76,7 +76,7 @@
 
             <div>
                 <label for="user_id">Propriétaire:</label>
-                <select name="user_id" id="">
+                <select name='user_id' id='user_id'>
                     <option value="">selectionner</option>
                     @foreach ($users as $un_user )
                         <option value="{{ $un_user->id }}">{{ $un_user->nom }}</option>
