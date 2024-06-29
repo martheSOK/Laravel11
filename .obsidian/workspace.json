@@ -1,0 +1,165 @@
+{
+  "main": {
+    "id": "26fb1389d29888bb",
+    "type": "split",
+    "children": [
+      {
+        "id": "0438620b15b8ddad",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9595ebf28881756c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "marthe.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7b0dc2c9136cbefa",
+    "type": "split",
+    "children": [
+      {
+        "id": "0cc8323d38399d10",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bc51a68912d71947",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c08239c100cbcc95",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b28912324b70adf6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d88b0d90721754f5",
+    "type": "split",
+    "children": [
+      {
+        "id": "89005698761b6e1a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9e13ad5f1ffc0ca7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "marthe.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "500d59dfc712b9eb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "marthe.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8fc9eae91a5cab38",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "24f9eba0866512aa",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "marthe.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false
+    }
+  },
+  "active": "9595ebf28881756c",
+  "lastOpenFiles": [
+    "storage/debugbar/X06a91eb0e92a97c2ba014a76d1fa914b.json",
+    "database/database.sqlite-journal",
+    "storage/debugbar/Xdb50d8506a49a8651b147d31f5e18de3.json",
+    "storage/debugbar/X6641b3974b465103aa973357dc620a1d.json",
+    "storage/debugbar/X4981aca2a7cd6837fb2e9e58f881ea41.json",
+    "storage/debugbar/X2c89802b701429df0a0bc101b5889e68.json",
+    "storage/debugbar/Xc64a7fbfaaa13fa66a5370504a06c380.json",
+    "storage/debugbar/Xbf99c2e73955efb5848de96ccb1f6560.json",
+    "storage/debugbar/Xd53a6fb12a86dc02449fdc4429410972.json",
+    "storage/debugbar/X68a32621228d52c18096f7c596ad33e8.json",
+    "storage/debugbar/X87a04819b6f71709b826335908c16802.json",
+    "vendor/composer/e187d30b/spatie-laravel-permission-fe973a5/README.md",
+    "vendor/composer/e187d30b/spatie-laravel-permission-fe973a5/LICENSE.md"
+  ]
+}
