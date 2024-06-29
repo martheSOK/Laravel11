@@ -1,5 +1,4 @@
-@extends('layouts.base')
-@section("content")
+<x-app-layout>
 <div class="container">
     <h1 class="bg-red" style="display: flex; justify-content: center;  align-items: center; margin-top:60px; font-weight: bold; font-size: 2rem;">{{ $titre }}</h1>
     <div>
@@ -50,4 +49,4 @@
     </div>
 </div>
 
-@endsection
+</x-app-layout>

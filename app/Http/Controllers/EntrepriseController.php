@@ -7,8 +7,24 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 
+use App\Http\Controllers\HasMiddleware;
+
 class EntrepriseController extends Controller
 {
+    //use HasMiddleware;
+
+    // public function __construct()
+    // {
+    //     $this->middleware('entreprisemiddleware');
+    // }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('entreprisemiddleware')->only('index');
+    //     // ou pour plusieurs méthodes
+    //     // $this->middleware('entreprisemiddleware')->only(['index', 'show']);
+    // }
+
     /**
      * Display a listing of the resource.
      */
