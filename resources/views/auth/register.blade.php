@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('users.store') }}">
+    <form method="POST" action="{{'register' }}">
         @csrf
         <!-- Nom -->
         <div>
@@ -22,16 +22,16 @@
         </div>
 
          <!-- status -->
-         <div>
+         {{-- <div>
             <x-input-label for="status" :value="__('Status')" />
             <x-text-input id="status" class="block mt-1 w-full" type="text" name="status" :value="old('status')" required autofocus autocomplete="status" />
             <x-input-error :messages="$errors->get('status')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 

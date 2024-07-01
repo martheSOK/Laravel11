@@ -36,9 +36,15 @@ require __DIR__.'/auth.php';
 
 
 
-Route::middleware('auth')->group(function () {
+//Route::middleware(['Auth','status:admin'] )->group(function () {
+
+
+
+
+
+Route::middleware(['auth'] )->group(function () {
     Route::get('/users',[UserController::class,'index'])->name("users.index");
-    Route::get('users/create', [UserController::class, 'create'])->name("register");
+    Route::get('users/create', [UserController::class, 'create'])->name("users.create");
     Route::post('/users', [UserController::class, 'store'])->name("users.store");
     Route::get('/users/{user}',[UserController::class,'show'])->name("users.show");
     Route::get('/users/{user}/edit',[UserController::class,'edit'])->name("users.edit");
@@ -64,3 +70,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/evenements/{evenement}',[EvenementController::class,'update'])->name("evenements.update");
     Route::delete('/evenements/{evenement}',[EvenementController::class,'destroy'])->name("evenements.delete");
 });
+
+// Route::group(['middleware'=>['role:user']],function(){
+
+
+// });

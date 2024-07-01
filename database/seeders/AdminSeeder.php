@@ -18,7 +18,6 @@ class AdminSeeder extends Seeder
             'nom' =>'TRAORE',
             'prenom' =>'jhon',
             'contact' =>'91215465',
-            'status' =>'admin',
             'email' => 'admin@gmail.com',
             'password' =>'adminadmin'
         ]);
@@ -29,7 +28,6 @@ class AdminSeeder extends Seeder
             'nom' =>'SOKA',
             'prenom' =>'dissima',
             'contact' =>'92662850',
-            'status' =>'user',
             'email' => 'dissima@gmail.com',
             'password' =>'dissi94##'
         ]);

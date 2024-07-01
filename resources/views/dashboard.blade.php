@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->nom }}</div>
+                   <h1>Bienvenue sur notre dashbord</h1>
                 </div>
             </div>
         </div>

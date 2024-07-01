@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('contact');
-            $table->enum('status',["user","admin"]);
+            // $table->enum('status',["user","admin"]);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

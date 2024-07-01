@@ -5,10 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Entreprise;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class EvenementController extends Controller
+class EvenementController extends Controller implements HasMiddleware
 {
+
+    public static function middleware(): array
+    {
+        return [
+
+            //'permission:create entreprise',
+            new Middleware('permission:liste_evenement', only:['index']),
+            new Middleware('permission:create_evenement', only: ['create','store']),
+            new Middleware('permission:delete_evenement',only:['destroy']),
+            new Middleware('permission:edit_evenement',only:['edit','update']),
+            new Middleware('permission:voir_evenement', only: ['show']),
+
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */

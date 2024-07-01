@@ -7,23 +7,30 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 
-use App\Http\Controllers\HasMiddleware;
-
-class EntrepriseController extends Controller
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use \Spatie\Permission\Middleware\RoleMiddleware;
+use \Spatie\Permission\Middleware\PermissionMiddleware;
+class EntrepriseController extends Controller implements HasMiddleware
 {
-    //use HasMiddleware;
 
-    // public function __construct()
-    // {
-    //     $this->middleware('entreprisemiddleware');
-    // }
+    public static function middleware(): array
+    {
+        return [
+            // examples with aliases, pipe-separated names, guards, etc:
+            //'permission:create entreprise',
+            new Middleware('permission:liste_entreprise', only:['index']),
+            new Middleware('permission:create_entreprise', only: ['create','store']),
+            new Middleware('permission:delete_entreprise',only:['destroy']),
+            new Middleware('permission:edit_entreprise',only:['edit','update']),
+            new Middleware('permission:voir_entreprise', only: ['show']),
 
-    // public function __construct()
-    // {
-    //     $this->middleware('entreprisemiddleware')->only('index');
-    //     // ou pour plusieurs méthodes
-    //     // $this->middleware('entreprisemiddleware')->only(['index', 'show']);
-    // }
+            //new Middleware('role:author', only: ['index']),
+            // new Middleware(RoleMiddleware::using('manager'), except:['show']),
+            // new Middleware(PermissionMiddleware::using('delete records,api'), only:['destroy']),
+        ];
+    }
+
 
     /**
      * Display a listing of the resource.

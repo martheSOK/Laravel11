@@ -21,11 +21,11 @@
         </div>
 
          <!-- status -->
-         <div>
+         {{-- <div>
             <x-input-label for="status" :value="__('Status')" />
             <x-text-input id="status" class="block mt-1 w-full" type="text" name="status" :value="old('status',$user->status ?? '')" required autofocus autocomplete="status" disable/>
             <x-input-error :messages="$errors->get('status')" class="mt-2" />
-        </div>
+        </div> --}}
 
         <!-- Email Address -->
         <div class="mt-4">

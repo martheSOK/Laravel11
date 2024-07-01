@@ -3,26 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
-class UserController extends Controller
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+class UserController extends Controller implements HasMiddleware
 {
+
+
+    public static function middleware(): array
+    {
+
+        return [
+
+            new middleware('permission:liste_user', only:['index']),
+            new middleware('permission:create_user', only:['create', 'store']),
+            new middleware('permission:edit_user', only:['edit', 'update']),
+            new middleware('permission:voir_user', only:['show']),
+            new middleware('permission:delete_user', only:['destroy']),
+
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        {
+        // dump(Auth::user()->roles->first()->permissions);
+        // dump(Auth::user()->permissions);
+
             $data=[
                 "titre" =>"Liste de toutes les utilisateurs",
                 "liste_users" => User::all(),
             ];
-            return view('auth.index')->with($data);
-        }
+            return view('users.index')->with($data);
+
     }
 
     /**
@@ -31,7 +49,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('auth.register');
+        return view('users.create');
     }
 
     /**
@@ -43,21 +61,21 @@ class UserController extends Controller
             'nom'=> ['required', 'string', 'max:255'],
             'prenom'=> ['required', 'string', 'max:255'],
             'contact'=> ['required', 'string', 'max:255'],
-            'status'=> ['required', 'string', 'max:255'],
+            'roles'=> ['required', 'string', 'max:255'],
             // 'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required' ],
         ]);
 
         $user = User::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'contact'=>$request->contact,
-            'status'=>$request->status,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+        $user->assignRole($request->roles);
         return redirect()->route('users.index');
     }
     /**
@@ -66,7 +84,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        return view('auth.show',compact("user"));
+        return view('users.show',compact("user"));
     }
 
     /**
@@ -75,7 +93,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        return view('auth.edit',compact("user"));
+        return view('users.edit',compact("user"));
     }
 
     /**
@@ -88,9 +106,8 @@ class UserController extends Controller
             'nom'=> ['required', 'string', 'max:255'],
             'prenom'=> ['required', 'string', 'max:255'],
             'contact'=> ['required', 'string', 'max:255'],
-            'status'=> ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required'],
         ]);
 
         $user->update($validator);
