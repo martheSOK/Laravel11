@@ -8,9 +8,9 @@ use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -75,3 +75,6 @@ Route::middleware(['auth'] )->group(function () {
 
 
 // });
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('home/{evenement}', [App\Http\Controllers\HomeController::class, 'show'])->name('home.show');
